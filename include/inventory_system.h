@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <iostream>
 #include <vector>
 
 class InventoryItem {
@@ -18,6 +16,7 @@ class InventoryItem {
         bool isActive { false };
         void use();
         void destroy();
+        void reduceDurability(int amount);
 
 };
 

@@ -1,11 +1,9 @@
 #pragma once
-#include <vector>
-#include <string>
 #include "inventory_system.h"
 
 class CombatSystem {
     private:
-        InventoryItem* weapon { nullptr };
+        InventoryItem* m_weapon { nullptr };
         int m_health {};
         int m_attack {};
         int m_defense {};
@@ -17,10 +15,14 @@ class CombatSystem {
             , m_defense { defense }
         {
         }
+    // Getters
         InventoryItem* getWeapon();
         int getHealth();
         int getAttack();
-        void changeWeapon(const InventoryItem* weapon);
-        int takeDamage(int damage);
+
+    // Mutators
+        int attack(CombatSystem& target);
+        void changeWeapon(InventoryItem* weapon);
+        void takeDamage(int damage);
         void reduceWeaponDurability(int durabilityAmount);
 };
