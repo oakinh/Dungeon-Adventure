@@ -8,8 +8,8 @@ class Entity {
         
 
     public:
-        Entity(int health, int attack, int defense)
-            : m_combatSystem{ health, attack, defense }
+        Entity(int health, int attack, int defense, int agility)
+            : m_combatSystem{ health, attack, defense, agility }
         {
         }
 

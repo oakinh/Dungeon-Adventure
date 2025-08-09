@@ -1,4 +1,5 @@
 #include "combat_system.h"
+#include "get_random_number.h"
 
 // Getters
 InventoryItem* CombatSystem::getWeapon() { // Maybe change the return type?
@@ -13,7 +14,9 @@ int CombatSystem::getAttack() {
 
 // Mutators
 int CombatSystem::attack(CombatSystem& target) {
-    const int damage = this->m_attack - target.m_defense;
+    int agilityMitigation{ getRandomNumber( 0, this->m_agility) };
+    int damage{ this->m_attack - target.m_defense - agilityMitigation };
+    damage = damage > 0 ? damage : 0;
     target.m_health -= damage;
     return damage;
 }

@@ -1,10 +1,15 @@
 #include <iostream>
 #include "entity.h"
+#include "enemy_factory.h"
 
 int main() {
-    std::cout << "Hello world!" << '\n';
-    Entity player { 100, 10, 10};
-    Entity goblin { 25, 5, 5};
+    std::cout << "Welcome to the Dungeon, brave warrior." << '\n';
+    std::cout << "Enter your name: ";
+    std::string playerName {};
+    std::cin >> playerName; // Shore up input handling
+
+    Entity player { 100, 25, 15, 20};
+    Entity goblin { createGoblin()};
     int damage = player.m_combatSystem.attack(goblin.m_combatSystem);
     std::cout << "Player has attacked goblin for " << damage << " damage" << '\n';
     std::cout << "Goblin has " << goblin.m_combatSystem.getHealth() << " health remaining!" << '\n';
