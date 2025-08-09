@@ -5,10 +5,10 @@
 InventoryItem* CombatSystem::getWeapon() { // Maybe change the return type?
     return m_weapon;
 }
-int CombatSystem::getHealth() {
+int CombatSystem::getHealth() const {
     return m_health;
 }
-int CombatSystem::getAttack() {
+int CombatSystem::getAttack() const {
     return m_attack;
 }
 

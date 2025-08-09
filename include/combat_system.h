@@ -29,8 +29,8 @@ class CombatSystem {
         }
     // Getters
         InventoryItem* getWeapon();
-        int getHealth();
-        int getAttack();
+        int getHealth() const;
+        int getAttack() const;
 
     // Mutators
         int attack(CombatSystem& target);
