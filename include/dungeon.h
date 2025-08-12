@@ -1,5 +1,5 @@
 #pragma once
-#include "combat_system.h"
+#include "inventory_items.h"
 
 
 struct Room {

@@ -19,5 +19,6 @@ class InventorySystem {
         std::vector<InventoryItem> inventory{};
     public:
         bool addItem(InventoryItem& item);
+        void removeFromInventory(InventoryItem& item);
         void destroyItem(InventoryItem& item);
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "inventory_system.h"
+#include "inventory_items.h"
 
 class ItemPool {
     private:

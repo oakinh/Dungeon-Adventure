@@ -1,9 +1,6 @@
 #pragma once
 #include <string>
 #include <variant>
-#include "environment_objects.h"
-
-// 
 
 struct StatusEffect {
     enum Stat {
@@ -23,9 +20,9 @@ struct Tool {
         ROCK,
     };
     private:
-        int EXPLOSIVE_DAMAGE = 500;
-        int LOCKPICK_DAMAGE = 1;
-        int ROCK_DAMAGE = 10;
+        constexpr static int EXPLOSIVE_DAMAGE = 500;
+        constexpr static int LOCKPICK_DAMAGE = 1;
+        constexpr static int ROCK_DAMAGE = 10;
 
     public:
         Type type {};
