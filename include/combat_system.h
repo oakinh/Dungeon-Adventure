@@ -1,15 +1,5 @@
 #pragma once
-#include "inventory_system.h"
-
-struct StatusDebuff {
-    enum Stat {
-        HEALTH,
-        ATTACK,
-        DEFENSE,
-        AGILITY
-    };
-    int amount {};
-};
+#include "inventory_items.h"
 
 class CombatSystem {
     private:

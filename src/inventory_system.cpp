@@ -9,6 +9,6 @@
 //         void destroyItem(InventoryItem& item);
 
 
-void InventoryItem::reduceDurability(int amount) {
-    m_durability -= amount;
-}
+// void InventoryItem::reduceDurability(int amount) {
+//     m_durability -= amount;
+// }

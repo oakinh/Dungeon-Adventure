@@ -1,24 +1,18 @@
 #pragma once
 #include <vector>
+#include "inventory_items.h"
 
-class InventoryItem {
-    public:
-        enum Type {
-            WEAPON,
-            TOOL,
-            CONSUMABLE
-        };
-    private:
-        Type m_type {};
-        int m_durability {};
+// class Consumable {
+//     private:
+//         int m_durability {};
 
-    public:
-        bool isActive { false };
-        void use();
-        void destroy();
-        void reduceDurability(int amount);
+//     public:
+//         bool isActive { false };
+//         void use();
+//         void destroy();
+//         void reduceDurability(int amount);
 
-};
+// };
 
 class InventorySystem {
     private:
