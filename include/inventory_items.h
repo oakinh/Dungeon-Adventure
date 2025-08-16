@@ -1,16 +1,22 @@
 #pragma once
 #include <string>
 #include <variant>
+#include <array>
+
+
+class Entity;
 
 struct StatusEffect {
     enum Stat {
         HEALTH,
         ATTACK,
         DEFENSE,
-        AGILITY
+        AGILITY,
+        MAX_STAT
     };
     Stat stat;
     int amount {};
+    void applyEffect(Entity& entity);
 };
 
 struct Tool {
@@ -34,9 +40,18 @@ struct Tool {
 };
 
 struct Potion {
+    const std::array<StatusEffect::Stat, StatusEffect::Stat::MAX_STAT> statusEffects {};
+    std::string name {};
     int durability {};
-    StatusEffect statusEffect {};
-
+    bool toss();
 };
 
-using InventoryItem = std::variant<Tool, Potion>;
+struct Weapon {
+    const std::array<StatusEffect::Stat, StatusEffect::Stat::MAX_STAT> statusEffects {};
+    std::string name {};
+    int durability {};
+    bool equip();
+    bool reduceDurability(int amount);
+};
+
+using InventoryItem = std::variant<Tool, Potion, Weapon>;

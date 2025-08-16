@@ -1,8 +1,9 @@
+#include "inventory_items.h"
 #include "combat_system.h"
 #include "get_random_number.h"
 
 // Getters
-InventoryItem* CombatSystem::getWeapon() { // Maybe change the return type?
+Weapon* CombatSystem::getWeapon() { // Maybe change the return type?
     return m_weapon;
 }
 int CombatSystem::getHealth() const {
@@ -21,7 +22,7 @@ int CombatSystem::attack(CombatSystem& target) {
     return damage;
 }
 
-void CombatSystem::changeWeapon(InventoryItem* weapon) {
+void CombatSystem::changeWeapon(Weapon* weapon) {
     m_weapon = weapon;
 }
 void CombatSystem::takeDamage(int damage) {
