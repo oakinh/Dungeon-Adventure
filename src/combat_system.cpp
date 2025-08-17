@@ -31,3 +31,7 @@ void CombatSystem::takeDamage(int damage) {
 void CombatSystem::reduceWeaponDurability(int durabilityAmount) {
     m_weapon->reduceDurability(durabilityAmount);
 }
+
+void CombatSystem::applyStatusEffect(const StatusEffect& statusEffect) {
+    m_statusEffects.
+}

@@ -16,6 +16,7 @@ struct StatusEffect {
     };
     Stat stat;
     int amount {};
+    bool isActive { false };
     void applyEffect(Entity& entity);
 };
 
