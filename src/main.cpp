@@ -8,7 +8,7 @@ int main() {
     std::string playerName {};
     std::cin >> playerName; // Shore up input handling
 
-    Entity player { 100, 25, 15, 20};
+    Entity player { Entity::Type::PLAYER, 100, 25, 15, 20, 0 };
     Entity goblin { createGoblin()};
     int damage = player.m_combatSystem.attack(goblin.m_combatSystem);
     std::cout << "Player has attacked goblin for " << damage << " damage" << '\n';

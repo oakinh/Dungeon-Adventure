@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "inventory_items.h"
 #include "combat_system.h"
 #include "get_random_number.h"
@@ -33,5 +35,13 @@ void CombatSystem::reduceWeaponDurability(int durabilityAmount) {
 }
 
 void CombatSystem::applyStatusEffect(const StatusEffect& statusEffect) {
-    m_statusEffects.
+    bool applied = false;
+    for (auto& element : m_statusEffects) {
+        if (element.stat == statusEffect.stat) {
+            element.amount = statusEffect.amount;
+            element.isActive = true;
+            applied = true;
+        }
+    }
+    assert(applied && "The statusEffect was successfully applied");
 }

@@ -25,6 +25,25 @@ class Room {
 
         void setNextRoom(Room* room) { m_nextRoom = room; }
         void enterRoom(Entity& entity); // Applies status effect
+};
 
+class Dungeon {
+    private:
+        Room* m_root = nullptr;
+        int m_roomCount {};
+        int m_minDifficulty {};
+        int m_maxDifficulty {};
 
+        Room* generateRooms(int roomCount, int minDifficulty, int maxDifficulty);
+
+    public:
+        Dungeon(int roomCount, int minDifficulty, int maxDifficulty)
+            : m_roomCount{ roomCount }
+            , m_minDifficulty{ minDifficulty }
+            , m_maxDifficulty{ maxDifficulty }
+            {
+                generateRooms(roomCount, minDifficulty, maxDifficulty);
+            }
+        
+        Room* getRootRoom() { return m_root; };
 };
