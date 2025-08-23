@@ -8,12 +8,14 @@ class Entity {
     public:
     enum Type {
         PLAYER,
-        ORC,
-        GOBLIN,
-        TROLL,
         BAT,
+        GOBLIN,
+        ORC,
+        TROLL,
         MAX_TYPES
     };
+    static constexpr int ENEMY_STARTING_INDEX = 1;
+    static constexpr int ENEMY_COUNT = Entity::Type::MAX_TYPES - 1;
     private:
         InventorySystem m_inventorySystem {};
         std::string_view m_name {};
