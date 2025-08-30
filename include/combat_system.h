@@ -2,7 +2,6 @@
 #include <array>
 #include "inventory_items.h"
 
-
 struct Weapon;
 
 class CombatSystem {
@@ -13,13 +12,15 @@ class CombatSystem {
         int m_defense {};
         int m_agility {};
         std::array<StatusEffect, StatusEffect::MAX_STAT> m_statusEffects {};
+        Entity* m_owner {};
 
     public:
-        CombatSystem(int health, int attack, int defense, int agility) 
+        CombatSystem(int health, int attack, int defense, int agility, Entity* owner) 
             : m_health { health }
             , m_attack { attack }
             , m_defense { defense }
             , m_agility { agility }
+            , m_owner { owner }
         {
             for (size_t i = 0; i < StatusEffect::MAX_STAT; ++i) {
                 // Initialize array with one of each types of StatusEffects

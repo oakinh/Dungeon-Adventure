@@ -20,7 +20,7 @@ int CombatSystem::attack(CombatSystem& target) {
     int agilityMitigation{ getRandomNumber( 0, this->m_agility) };
     int damage{ this->m_attack - target.m_defense - agilityMitigation };
     damage = damage > 0 ? damage : 0;
-    target.m_health -= damage;
+    target.takeDamage(damage);
     return damage;
 }
 
@@ -29,6 +29,10 @@ void CombatSystem::changeWeapon(Weapon* weapon) {
 }
 void CombatSystem::takeDamage(int damage) {
     m_health -= damage;
+    if (m_health <= 0) {
+        // Make narrator aware of death
+        this->m_owner->kill();
+    }
 }
 void CombatSystem::reduceWeaponDurability(int durabilityAmount) {
     m_weapon->reduceDurability(durabilityAmount);
