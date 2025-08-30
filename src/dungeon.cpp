@@ -58,12 +58,12 @@ Room* Dungeon::generateRooms(int roomCount, int minDifficulty, int maxDifficulty
         std::vector<Entity> enemies {};
         generateEnemies(currentRoomDifficulty, enemies);
         Room newRoom = Room({}, enemies, {});
-        if (i == 0) m_rootRoom = newRoom;
+        if (i == 0) m_rootRoom = std::make_unique<Room>(std::move(newRoom));
 
         if (!curr) {
             curr = this->getRootRoom();
         } else {
-            curr->setNextRoom(&newRoom);
+            curr->setNextRoom(std::make_unique<Room>(std::move(newRoom)));
         } 
     }
 
