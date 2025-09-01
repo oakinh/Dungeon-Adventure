@@ -17,13 +17,28 @@ class Entity {
     };
     static constexpr int ENEMY_STARTING_INDEX = 1;
     static constexpr int ENEMY_COUNT = Entity::Type::MAX_TYPES - 1;
-    
-    static constexpr std::array<std::string_view, ENEMY_COUNT> typeStrings {
-        "Bat",
-        "Goblin",
-        "Orc",
-        "Troll"
+
+    using FactoryFn = Entity(*)(void);
+
+    struct TypeInfo {
+        std::string_view name;
+        int rating;
+        bool isEnemy;
+        FactoryFn factory;
     };
+
+    static Entity createBat();
+    static Entity createGoblin();
+    static Entity createOrc();
+    static Entity createTroll();
+
+    static constexpr std::array<TypeInfo, static_cast<size_t>(Type::MAX_TYPES)> kInfo = {{
+        { "Player",  0, false, nullptr },
+        { "Bat",     5, true, &Entity::createBat },
+        { "Goblin", 10, true, &Entity::createGoblin },
+        { "Orc",    20, true, &Entity::createOrc },
+        { "Troll",  30, true, &Entity::createTroll },
+    }};
     
     private:
         bool m_isAlive = true;
@@ -42,8 +57,22 @@ class Entity {
 
         CombatSystem m_combatSystem;
     // Static
-        static std::string_view getTypeName(Entity::Type type) {
-            return Entity::typeStrings[type];
+        static constexpr std::string_view getTypeName(Type type) {
+            return kInfo[static_cast<size_t>(type)].name;
+        }
+
+        static constexpr bool isEnemy(Type type) {
+            return kInfo[static_cast<size_t>(type)].isEnemy;
+        }
+
+        static constexpr int getRating(Type type) {
+            return kInfo[static_cast<size_t>(type)].rating;
+        }
+
+        static inline Entity make(Type type) {
+            auto func = kInfo[static_cast<size_t>(type)].factory;
+            if (func) return func();
+            return Entity{ Entity::Type::PLAYER, 100, 25, 15, 20, 0 };
         }
     
     // Getters

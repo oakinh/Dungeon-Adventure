@@ -12,16 +12,6 @@ bool yesNoQuestion(std::string_view question) {
     return false;
 }
 
-void printEnemies(Room* room) {
-    const auto& entities = room->getEntities();
-
-    for (const auto& entity : entities) {
-        std::cout << "An enemy " 
-            << Entity::typeStrings[static_cast<size_t>(entity.getType())]
-            << " is in the room.\n";
-    }
-}
-
 int main() {
     Narrator narrator = Narrator();
     narrator.welcomePlayer();

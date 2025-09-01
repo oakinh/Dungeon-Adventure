@@ -1,10 +1,8 @@
 #include <span>
 #include <memory>
-#include <iterator>
 
 #include "dungeon.h"
 #include "entity.h"
-#include "enemy_factory.h"
 #include "get_random_number.h"
 
 void Room::enterRoom(Entity& entity) {
@@ -32,8 +30,8 @@ void Dungeon::generateEnemies(int roomDifficulty, std::vector<Entity>& out_enemi
     int currentDifficultySum { 0 };
 
     while (currentDifficultySum < roomDifficulty) {
-        int randomEnemyIndex = getRandomNumber(0, Enemies::LAST_INDEX);
-        int enemyRating = Enemies::enemyRatings[randomEnemyIndex];
+        int randomEnemyIndex = getRandomNumber(1, Entity::Type::MAX_TYPES);
+        int enemyRating = Entity::getRating(static_cast<Entity::Type>(randomEnemyIndex));
         bool shouldAddEnemy = true;
     
         while (enemyRating > roomDifficulty - currentDifficultySum) {
@@ -43,11 +41,11 @@ void Dungeon::generateEnemies(int roomDifficulty, std::vector<Entity>& out_enemi
             }
             // Walk down the options, enemies are sorted by rating smallest to greatest
             --randomEnemyIndex;
-            enemyRating = Enemies::enemyRatings[randomEnemyIndex];
+            enemyRating = Entity::getRating(static_cast<Entity::Type>(randomEnemyIndex));
         }
         
         if (shouldAddEnemy) {
-            out_enemies.push_back(Enemies::factoryFunctions[randomEnemyIndex]());
+            out_enemies.push_back(Entity::make(static_cast<Entity::Type>(randomEnemyIndex)));
             currentDifficultySum += enemyRating;
         }
     }
@@ -73,6 +71,6 @@ Room* Dungeon::generateRooms(int roomCount, int minDifficulty, int maxDifficulty
             curr->setNextRoom(std::make_unique<Room>(std::move(newRoom)));
         } 
     }
-
+    return nullptr;
     // Fill with loot
 }
