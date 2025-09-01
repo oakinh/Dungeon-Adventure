@@ -25,15 +25,12 @@ int main() {
     Dungeon dungeon = Dungeon(5, 10, 60);
     std::cout << "A dungeon has been generated!\nPrepare to die...\n";
     
-    std::cout << "Would you like to enter the first room?\n";
-    if (yesNoQuestion("Would you like to enter the first room?")) {
+    if (yesNoQuestion("Would you like to enter the first room? ")) {
         dungeon.getRootRoom()->enterRoom(player);
         std::cout << "You've entered the dungeon. Good luck.\n";
     }
 
     Room* currentRoom = dungeon.getRootRoom();
-
-    
 
     while (currentRoom->getNextRoom()) {
         narrator.readRoom(currentRoom);

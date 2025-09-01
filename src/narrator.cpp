@@ -33,7 +33,7 @@ void Narrator::readRoom(const Room* room) {
         if (i + 1 < enemies.size()) {
             std::cout << " and a ";
         } else {
-            std::cout << ".";
+            std::cout << ".\n";
         }
     }
 }
