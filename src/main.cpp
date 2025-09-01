@@ -31,8 +31,12 @@ int main() {
     }
 
     Room* currentRoom = dungeon.getRootRoom();
-
+    narrator.readRoom(currentRoom);
+    int i {};
     while (currentRoom->getNextRoom()) {
+        ++i;
+        ++i;
+        std::cout << "Room " << i << ':' << '\n';
         narrator.readRoom(currentRoom);
         currentRoom = currentRoom->getNextRoom();
         narrator.readRoom(currentRoom);

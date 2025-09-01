@@ -1,5 +1,5 @@
 #pragma once
-#include <ostream>
+#include <iostream>
 #include <string_view>
 
 #include "combat_system.h"
@@ -70,9 +70,12 @@ class Entity {
         }
 
         static inline Entity make(Type type) {
-            auto func = kInfo[static_cast<size_t>(type)].factory;
-            if (func) return func();
-            return Entity{ Entity::Type::PLAYER, 100, 25, 15, 20, 0 };
+            auto& info = kInfo[static_cast<size_t>(type)];
+            if (!info.factory) {
+                std::cout << "No factory method available\n";
+                return Entity{ Entity::Type::PLAYER, 100, 25, 15, 20, 0 };
+            }
+            return info.factory();            
         }
     
     // Getters
