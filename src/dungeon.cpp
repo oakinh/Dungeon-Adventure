@@ -1,12 +1,19 @@
+#include <span>
+#include <memory>
+#include <iterator>
+
 #include "dungeon.h"
 #include "entity.h"
 #include "enemy_factory.h"
 #include "get_random_number.h"
-#include <memory>
 
 void Room::enterRoom(Entity& entity) {
     entity.m_combatSystem.applyStatusEffect(m_statusEffect);
     m_entities.push_back(entity);
+}
+
+std::span<const Entity> Room::getEnemies() const {
+    return { m_entities.begin(), m_entities.end() - 1 }; // This should exclude the player
 }
 
 void Dungeon::addRoom(Room* room) {

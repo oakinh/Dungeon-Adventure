@@ -3,6 +3,7 @@
 #include "inventory_items.h"
 
 struct Weapon;
+class Entity;
 
 class CombatSystem {
     private:

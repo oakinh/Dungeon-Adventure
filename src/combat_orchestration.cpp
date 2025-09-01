@@ -1,4 +1,5 @@
 #include "combat_orchestration.h"
+#include "entity.h"
 
 void takeEnemyTurn(Entity& enemy, Entity& player) {
     enemy.m_combatSystem.attack(player.m_combatSystem);

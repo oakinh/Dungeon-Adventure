@@ -3,6 +3,7 @@
 #include "inventory_items.h"
 #include "combat_system.h"
 #include "get_random_number.h"
+#include "entity.h"
 
 // Getters
 Weapon* CombatSystem::getWeapon() { // Maybe change the return type?

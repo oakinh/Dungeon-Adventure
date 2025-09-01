@@ -1,4 +1,5 @@
 #pragma once
+#include <ostream>
 #include <string_view>
 
 #include "combat_system.h"
@@ -40,7 +41,11 @@ class Entity {
         }
 
         CombatSystem m_combatSystem;
-
+    // Static
+        static std::string_view getTypeName(Entity::Type type) {
+            return Entity::typeStrings[type];
+        }
+    
     // Getters
         std::string_view getName() const;
         bool getIsAlive() const { return m_isAlive; };
@@ -50,3 +55,5 @@ class Entity {
         void assignName(std::string_view name);
         void kill() { m_isAlive = false; };
 };
+
+std::ostream& operator<<(std::ostream& out, Entity::Type type);

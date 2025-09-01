@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <span>
+
 #include "inventory_items.h"
 #include "entity.h"
 
@@ -22,8 +24,9 @@ class Room {
             {
             }
 
-        const Room* getNextRoom() { return m_nextRoom.get(); }
+        Room* getNextRoom() { return m_nextRoom.get(); }
         const std::vector<Entity>& getEntities() const { return m_entities; }
+        std::span<const Entity> getEnemies() const; // Excludes the player
         const std::vector<InventoryItem>& getItems() const { return m_items; }
 
         void setNextRoom(std::unique_ptr<Room> room) { m_nextRoom = std::move(room); }

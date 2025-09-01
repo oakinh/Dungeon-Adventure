@@ -43,9 +43,17 @@ int main() {
 
     Room* currentRoom = dungeon.getRootRoom();
 
-    while (true) {
-        runTurns(currentRoom->getEntities(), player)
+    
+
+    while (currentRoom->getNextRoom()) {
+        narrator.readRoom(currentRoom);
+        currentRoom = currentRoom->getNextRoom();
+        narrator.readRoom(currentRoom);
     }
+
+    // while (true) {
+    //     runTurns(currentRoom->getEntities(), player)
+    // }
     
 
     return 0;
