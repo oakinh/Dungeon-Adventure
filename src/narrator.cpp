@@ -26,8 +26,15 @@ void Narrator::readDamage(const Entity& originator, const Entity& target, int da
 }
 
 void Narrator::readRoom(const Room* room) {
-    std::cout << "The room is dark, and cold. Growling in the dark facing you is a ";
+    std::cout << "Room " << room->getRoomNum() << ":" << '\n';
+    std::cout << "The room is dark, and cold. ";
+
     const std::span enemies = room->getEnemies();
+    if (enemies.empty()) {
+        std::cout << "It's empty.\n";
+    } else {
+        std::cout << "Growling before you is a ";
+    }
     for (int i { 0 }; i < enemies.size(); ++i) {
         std::cout << enemies[i].getType();
         if (i + 1 < enemies.size()) {

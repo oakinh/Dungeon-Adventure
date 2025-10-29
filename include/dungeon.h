@@ -1,4 +1,5 @@
 #pragma once
+#include <utility>
 #include <vector>
 #include <memory>
 #include <span>
@@ -15,19 +16,27 @@ class Room {
         std::vector<Entity> m_entities {};
         std::vector<InventoryItem> m_items {};
         std::unique_ptr<Room> m_nextRoom;
+        int m_roomNum {};
     
     public:
-        Room(StatusEffect statusEffect = {}, std::vector<Entity> entities = {}, std::vector<InventoryItem> items = {})
+        explicit Room(
+            const StatusEffect statusEffect = {},
+            std::vector<Entity> entities = {},
+            std::vector<InventoryItem> items = {},
+            const int roomNum = -1
+            )
             : m_statusEffect(statusEffect)
-            , m_entities(entities)
-            , m_items(items)
+            , m_entities(std::move(entities))
+            , m_items(std::move(items))
+            , m_roomNum(roomNum)
             {
             }
 
-        Room* getNextRoom() { return m_nextRoom.get(); }
+        Room* getNextRoom() const { return m_nextRoom.get(); }
         const std::vector<Entity>& getEntities() const { return m_entities; }
         std::span<const Entity> getEnemies() const; // Excludes the player
         const std::vector<InventoryItem>& getItems() const { return m_items; }
+        int getRoomNum() const { return m_roomNum; }
 
         void setNextRoom(std::unique_ptr<Room> room) { m_nextRoom = std::move(room); }
         void enterRoom(Entity& entity); // Applies status effect
@@ -52,6 +61,6 @@ class Dungeon {
                 generateRooms(roomCount, minDifficulty, maxDifficulty);
             }
         
-        Room* getRootRoom() { return m_rootRoom.get(); };
+        Room* getRootRoom() { return m_rootRoom.get(); }
         void addRoom(Room* room);
 };

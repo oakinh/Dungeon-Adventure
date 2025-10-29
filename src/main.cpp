@@ -8,7 +8,7 @@ bool yesNoQuestion(std::string_view question) {
     std::cout << question;
     std::string answer {};
     std::cin >> answer;
-    if (answer == "yes") return true;
+    if (answer == "yes" || answer == "y") return true;
     return false;
 }
 
@@ -31,16 +31,15 @@ int main() {
     }
 
     Room* currentRoom = dungeon.getRootRoom();
+    std::cout << "Room 1: \n";
     narrator.readRoom(currentRoom);
-    int i {};
+    int i { 1 };
     while (currentRoom->getNextRoom()) {
         ++i;
-        ++i;
-        std::cout << "Room " << i << ':' << '\n';
         narrator.readRoom(currentRoom);
         currentRoom = currentRoom->getNextRoom();
-        narrator.readRoom(currentRoom);
     }
+    narrator.readRoom(currentRoom);
 
     // while (true) {
     //     runTurns(currentRoom->getEntities(), player)

@@ -1,4 +1,6 @@
 #pragma once
+#include <cassert>
+#include <functional>
 #include <iostream>
 #include <string_view>
 
@@ -18,8 +20,8 @@ class Entity {
     static constexpr int ENEMY_STARTING_INDEX = 1;
     static constexpr int ENEMY_COUNT = Entity::Type::MAX_TYPES - 1;
 
-    using FactoryFn = Entity(*)(void);
-
+    using FactoryFn = Entity(*)();
+    //using FactoryFn = std::function<Entity>;
     struct TypeInfo {
         std::string_view name;
         int rating;
@@ -69,7 +71,8 @@ class Entity {
             return kInfo[static_cast<size_t>(type)].rating;
         }
 
-        static inline Entity make(Type type) {
+        static Entity make(Type type) {
+            assert(type < Type::MAX_TYPES);
             auto& info = kInfo[static_cast<size_t>(type)];
             if (!info.factory) {
                 std::cout << "No factory method available\n";
