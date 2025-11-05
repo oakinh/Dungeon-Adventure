@@ -29,7 +29,7 @@ void Narrator::readRoom(const Room* room) {
     std::cout << "Room " << room->getRoomNum() << ":" << '\n';
     std::cout << "The room is dark, and cold. ";
 
-    const std::span enemies = room->getEnemies();
+    const std::vector<Entity>& enemies = room->getEntities();
     if (enemies.empty()) {
         std::cout << "It's empty.\n";
     } else {
@@ -43,4 +43,8 @@ void Narrator::readRoom(const Room* room) {
             std::cout << ".\n";
         }
     }
+}
+
+void Narrator::runPlayerTurn(Entity& player) {
+    std::cout << player.getName() << ", it's your turn."
 }

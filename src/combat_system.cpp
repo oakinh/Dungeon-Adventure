@@ -18,7 +18,7 @@ int CombatSystem::getAttack() const {
 
 // Mutators
 int CombatSystem::attack(CombatSystem& target) {
-    int agilityMitigation{ getRandomNumber( 0, this->m_agility) };
+    const int agilityMitigation{ getRandomNumber( 0, this->m_agility) };
     int damage{ this->m_attack - target.m_defense - agilityMitigation };
     damage = damage > 0 ? damage : 0;
     target.takeDamage(damage);

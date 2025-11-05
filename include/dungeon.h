@@ -34,6 +34,7 @@ class Room {
 
         Room* getNextRoom() const { return m_nextRoom.get(); }
         const std::vector<Entity>& getEntities() const { return m_entities; }
+        std::vector<Entity>& getEntitiesMutable() { return m_entities; }
         std::span<const Entity> getEnemies() const; // Excludes the player
         const std::vector<InventoryItem>& getItems() const { return m_items; }
         int getRoomNum() const { return m_roomNum; }
@@ -50,7 +51,7 @@ class Dungeon {
         int m_maxDifficulty {};
 
         Room* generateRooms(int roomCount, int minDifficulty, int maxDifficulty);
-        void generateEnemies(int roomDifficulty, std::vector<Entity>& out_enemies);
+        static void generateEnemies(int roomDifficulty, std::vector<Entity>& out_enemies);
 
     public:
         Dungeon(int roomCount, int minDifficulty, int maxDifficulty)

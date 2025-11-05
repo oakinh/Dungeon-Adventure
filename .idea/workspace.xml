@@ -8,9 +8,9 @@
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
   </component>
@@ -29,11 +29,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b3828af-e8f2-44a2-85ae-22cf3cb1ac27" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/combat_orchestration.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/combat_orchestration.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/dungeon.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/dungeon.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/entity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/narrator.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/narrator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat_orchestration.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat_orchestration.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat_system.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat_system.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dungeon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungeon.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/get_random_number.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/get_random_number.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/narrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/narrator.cpp" afterDir="false" />
     </list>
@@ -55,6 +57,9 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -89,17 +94,12 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CMakeSettings",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="Dungeon-Adventure" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Dungeon-Adventure" TARGET_NAME="Dungeon-Adventure" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Dungeon-Adventure" RUN_TARGET_NAME="Dungeon-Adventure">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -115,11 +115,22 @@
       <workItem from="1760580235616" duration="484000" />
       <workItem from="1760580730998" duration="59000" />
       <workItem from="1760580807319" duration="28000" />
-      <workItem from="1761681358660" duration="5853000" />
+      <workItem from="1761681358660" duration="9358000" />
+      <workItem from="1762008558914" duration="11174000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/include/combat_orchestration.h</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

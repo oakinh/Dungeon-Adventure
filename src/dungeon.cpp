@@ -10,9 +10,14 @@ void Room::enterRoom(Entity& entity) {
     m_entities.push_back(entity);
 }
 
-std::span<const Entity> Room::getEnemies() const {
-    return { m_entities.begin(), m_entities.end() - 1 }; // This should exclude the player
-}
+// Commenting out for now, a bit buggy
+/*std::span<const Entity> Room::getEnemies() const {
+    // Be careful that bugs don't cause this function to hide enemies present in an attempt to filter the player
+    /*const size_t n { m_entities.size() };
+    const std::span<const Entity> all{ m_entities.data(), n };
+    return all.subspan(0, n);#1#
+    return { m_entities.data(), m_entities.size() };
+}*/
 
 void Dungeon::addRoom(Room* room) {
     std::unique_ptr<Room> node{room};
@@ -35,6 +40,8 @@ void Dungeon::generateEnemies(const int roomDifficulty, std::vector<Entity>& out
         bool shouldAddEnemy = true;
     
         while (enemyRating > roomDifficulty - currentDifficultySum) {
+            std::cout << "Decrementing randomEnemyIndex. enemyRating: " << enemyRating << '\n';
+            std::cout << "roomDifficulty - currentDifficultySum: " << roomDifficulty - currentDifficultySum << '\n';
             if (randomEnemyIndex == 0) {
                 // No more options, stop enemy generation
                 return;
@@ -47,9 +54,8 @@ void Dungeon::generateEnemies(const int roomDifficulty, std::vector<Entity>& out
         if (shouldAddEnemy) {
             std::cout << "randomEnemyIndex: " << randomEnemyIndex << '\n';
             Entity enemy { Entity::make(static_cast<Entity::Type>(randomEnemyIndex)) };
-            std::cout << "Enemy name: " << enemy.getName() << '\n';
             out_enemies.push_back(Entity::make(static_cast<Entity::Type>(randomEnemyIndex)));
-            std::cout << "Added enemy" << '\n';
+            std::cout << "Added enemy: " << Entity::getTypeName(enemy.getType()) << '\n';
             currentDifficultySum += enemyRating;
         }
     }
@@ -62,7 +68,7 @@ Room* Dungeon::generateRooms(int roomCount, int minDifficulty, int maxDifficulty
     Room* curr = nullptr;
     for (int i { 0 }; i < roomCount; ++i) {
         
-        const int currentRoomDifficulty = ((i + 1) / roomCount) * maxDifficulty;
+        const int currentRoomDifficulty = std::max(((i + 1) / roomCount) * maxDifficulty, minDifficulty);
         
         std::vector<Entity> enemies {};
         generateEnemies(currentRoomDifficulty, enemies);
@@ -74,8 +80,11 @@ Room* Dungeon::generateRooms(int roomCount, int minDifficulty, int maxDifficulty
             curr = this->getRootRoom();
         } else {
             curr->setNextRoom(std::make_unique<Room>(std::move(newRoom)));
+            curr = curr->getNextRoom();
         }
+        std::cout << "============================\n";
         std::cout << "Generated room number: " << i << '\n';
+        std::cout << "==============================\n\n";
     }
     return nullptr;
     // Fill with loot

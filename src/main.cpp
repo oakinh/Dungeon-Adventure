@@ -12,6 +12,18 @@ bool yesNoQuestion(std::string_view question) {
     return false;
 }
 
+void readEnemiesVector(const std::vector<Entity>& enemies) {
+    if (enemies.empty()) {
+        std::cout << "\n=========\nreadEnemiesVector: Room empty\n";
+    }
+    std::cout << "\n======readEnemiesVector: Enemies detected\n";
+    for (const auto& enemy : enemies) {
+        std::cout << Entity::getTypeName(enemy.getType()) << '\n';
+    }
+    std::cout << "End readEnemiesVector===============\n\n";
+
+}
+
 int main() {
     Narrator narrator = Narrator();
     narrator.welcomePlayer();
@@ -31,19 +43,17 @@ int main() {
     }
 
     Room* currentRoom = dungeon.getRootRoom();
-    std::cout << "Room 1: \n";
     narrator.readRoom(currentRoom);
-    int i { 1 };
+    readEnemiesVector(currentRoom->getEntities());
     while (currentRoom->getNextRoom()) {
-        ++i;
-        narrator.readRoom(currentRoom);
         currentRoom = currentRoom->getNextRoom();
+        narrator.readRoom(currentRoom);
+        readEnemiesVector(currentRoom->getEntities());
     }
-    narrator.readRoom(currentRoom);
 
-    // while (true) {
-    //     runTurns(currentRoom->getEntities(), player)
-    // }
+    while (true) {
+        runTurns(currentRoom->getEntitiesMutable(), player);
+    }
     
 
     return 0;
