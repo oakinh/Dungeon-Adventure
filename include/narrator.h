@@ -11,4 +11,5 @@ class Narrator {
         void readDamage(const Entity& originator, const Entity& target, int damage);
         void readRoom(const Room* room);
         void runPlayerTurn();
+        InventoryItem& askForPotionSelection(const Entity& player);
 };

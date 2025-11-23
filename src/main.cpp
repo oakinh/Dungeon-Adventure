@@ -52,7 +52,7 @@ int main() {
     }
 
     while (true) {
-        runTurns(currentRoom->getEntitiesMutable(), player);
+        CombatOrchestration::runTurns(currentRoom->getEntitiesMutable(), player);
     }
     
 

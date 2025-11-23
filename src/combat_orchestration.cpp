@@ -2,14 +2,24 @@
 #include "entity.h"
 
 namespace CombatOrchestration {
+    bool usePotion(ActionContext& ctx) {
+
+    }
+    bool throwRock(ActionContext& ctx);
+    bool throwExplosive(ActionContext& ctx);
+    bool run(ActionContext& ctx);
+    bool doNothing(ActionContext& ctx);
+
     void takeEnemyTurn(Entity& enemy, Entity& player) {
-        // Opportunity for decision tree here
+        // TODO: Opportunity for decision tree here
         enemy.m_combatSystem.attack(player.m_combatSystem);
     }
 
-    void takePlayerTurn(Entity& player) {
+    void takePlayerTurn(Entity& player) {\
+        // TODO: Complete playerTurn logic
         // Actions the player can take
-
+            // 1. Main weapon attack
+            // 2. Run away
         // Call narrator to narrate start of turn, and it should return the playerTurnDecision for us to action on
     }
 

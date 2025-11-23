@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <print>
+#include <variant>
 #include "narrator.h"
 #include "entity.h"
 
@@ -45,6 +46,18 @@ void Narrator::readRoom(const Room* room) {
     }
 }
 
+InventoryItem* Narrator::askForPotionSelection(const Entity& player) {
+    auto& inv { player.m_inventorySystem.inventory };
+    for (const auto& invItem : inv) {
+
+        std::visit([](auto&& obj) {
+            using T = std::decay_t<decltype(invItem)>;
+
+        }, invItem);
+    }
+    std::cout << "You've chosen to throw a potion. Please select one from the list below: \n";
+}
+
 void Narrator::runPlayerTurn(Entity& player) {
-    std::cout << player.getName() << ", it's your turn."
+    std::cout << player.getName() << ", it's your turn.";
 }

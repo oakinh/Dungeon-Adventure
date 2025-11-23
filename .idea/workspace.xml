@@ -6,6 +6,7 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
@@ -29,13 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b3828af-e8f2-44a2-85ae-22cf3cb1ac27" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/combat_orchestration.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/combat_orchestration.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/dungeon.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/dungeon.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/entity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/inventory_system.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/inventory_system.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/narrator.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/narrator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/combat_orchestration.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat_orchestration.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combat_system.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat_system.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungeon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungeon.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/narrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/narrator.cpp" afterDir="false" />
     </list>
@@ -87,6 +89,7 @@
     "RunOnceActivity.west.config.association.type.startup.service": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "full.screen.before.presentation.mode": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
@@ -94,7 +97,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C++",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -116,7 +119,9 @@
       <workItem from="1760580730998" duration="59000" />
       <workItem from="1760580807319" duration="28000" />
       <workItem from="1761681358660" duration="9358000" />
-      <workItem from="1762008558914" duration="11174000" />
+      <workItem from="1762008558914" duration="19221000" />
+      <workItem from="1762794065449" duration="4345000" />
+      <workItem from="1763673592204" duration="8281000" />
     </task>
     <servers />
   </component>
@@ -128,6 +133,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/include/combat_orchestration.h</url>
+          <line>1</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

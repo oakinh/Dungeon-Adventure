@@ -44,7 +44,7 @@ class Entity {
     
     private:
         bool m_isAlive = true;
-        InventorySystem m_inventorySystem {};
+
         std::string_view m_name {};
         int m_rating {}; // Used to calculate the difficulty of a room
         Type m_type;
@@ -58,13 +58,10 @@ class Entity {
         }
 
         CombatSystem m_combatSystem;
+        InventorySystem m_inventorySystem {};
     // Static
         static constexpr std::string_view getTypeName(Type type) {
             return kInfo[static_cast<size_t>(type)].name;
-        }
-
-        static constexpr bool isEnemy(Type type) {
-            return kInfo[static_cast<size_t>(type)].isEnemy;
         }
 
         static constexpr int getRating(Type type) {
@@ -79,6 +76,11 @@ class Entity {
                 return Entity{ Entity::Type::PLAYER, 100, 25, 15, 20, 0 };
             }
             return info.factory();            
+        }
+
+    // Const, non-static
+        constexpr bool isEnemy() const {
+            return kInfo[static_cast<size_t>(this->m_type)].isEnemy;
         }
     
     // Getters
