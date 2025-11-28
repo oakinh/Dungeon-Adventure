@@ -1,14 +1,38 @@
 #include "combat_orchestration.h"
 #include "entity.h"
+#include "narrator.h"
 
 namespace CombatOrchestration {
     bool usePotion(ActionContext& ctx) {
+        assert(ctx.initiator.getType() == Entity::PLAYER);
+        Entity& player { ctx.initiator };
+        size_t potionIndex { Narrator::askForPotionSelection(player) };
+        InventoryItem* item { player.m_inventorySystem.findByIndex(potionIndex) };
 
+        assert(item && "findByIndex returned nullptr");
+
+        assert(std::holds_alternative<Potion>(*item) && "Selected item is not a potion");
+
+        Potion& potion { std::get<Potion>(*item) };
+        for (auto& statusEffect : potion.statusEffects) {
+            ctx.target->m_combatSystem.applyStatusEffect(statusEffect);
+
+        }
+
+        return true;
     }
-    bool throwRock(ActionContext& ctx);
-    bool throwExplosive(ActionContext& ctx);
-    bool run(ActionContext& ctx);
-    bool doNothing(ActionContext& ctx);
+    bool throwRock(ActionContext& ctx) {
+        return true;
+    };
+    bool throwExplosive(ActionContext& ctx) {
+        return true;
+    };
+    bool run(ActionContext& ctx) {
+        return true;
+    };
+    bool doNothing(ActionContext& ctx) {
+        return true;
+    };
 
     void takeEnemyTurn(Entity& enemy, Entity& player) {
         // TODO: Opportunity for decision tree here
@@ -24,6 +48,7 @@ namespace CombatOrchestration {
     }
 
     void runTurns(std::vector<Entity>& entities, Entity& player) {
+        // TODO: Update StatusEffects on all entities, including player
         int aliveCount = 1; // Player is assumed alive
         bool isFirstPass = true;
         do {

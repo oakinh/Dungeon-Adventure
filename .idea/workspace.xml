@@ -30,15 +30,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b3828af-e8f2-44a2-85ae-22cf3cb1ac27" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/combat_orchestration.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/combat_orchestration.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/entity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/combat_system.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/combat_system.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/inventory_items.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/inventory_items.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/inventory_system.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/inventory_system.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/narrator.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/narrator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/combat_orchestration.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat_orchestration.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat_system.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat_system.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inventory_items.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventory_items.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inventory_system.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/inventory_system.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/narrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/narrator.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,36 +73,44 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="34819Zf9OlhqXRlY4q0Crj9VUCX" />
+  <component name="ProjectStatusUIService"><![CDATA[{
+  "uiKindId": "Widget"
+}]]></component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "full.screen.before.presentation.mode": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C++",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C++&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Dungeon-Adventure" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Dungeon-Adventure" TARGET_NAME="Dungeon-Adventure" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Dungeon-Adventure" RUN_TARGET_NAME="Dungeon-Adventure">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -121,7 +129,8 @@
       <workItem from="1761681358660" duration="9358000" />
       <workItem from="1762008558914" duration="19221000" />
       <workItem from="1762794065449" duration="4345000" />
-      <workItem from="1763673592204" duration="8281000" />
+      <workItem from="1763673592204" duration="9063000" />
+      <workItem from="1764354089959" duration="7155000" />
     </task>
     <servers />
   </component>

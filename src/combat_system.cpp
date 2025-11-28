@@ -45,6 +45,7 @@ void CombatSystem::applyStatusEffect(const StatusEffect& statusEffect) {
         if (element.stat == statusEffect.stat) {
             element.amount = statusEffect.amount;
             element.isActive = true;
+            element.remainingDuration = statusEffect.remainingDuration;
             applied = true;
         }
     }

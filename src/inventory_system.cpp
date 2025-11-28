@@ -12,3 +12,7 @@
 // void InventoryItem::reduceDurability(int amount) {
 //     m_durability -= amount;
 // }
+
+InventoryItem* InventorySystem::findByIndex(size_t i) {
+    return &inventory[i];
+}

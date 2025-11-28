@@ -14,10 +14,11 @@ struct StatusEffect {
         AGILITY,
         MAX_STAT
     };
+    bool isActive { false };
     Stat stat;
     int amount {};
-    bool isActive { false };
-    void applyEffect(Entity& entity);
+    int remainingDuration {};
+    // TODO: Figure out how to consistently apply effects, and decrement duration and remove effects
 };
 
 struct Tool {
@@ -41,10 +42,9 @@ struct Tool {
 };
 
 struct Potion {
-    const std::array<StatusEffect::Stat, StatusEffect::Stat::MAX_STAT> statusEffects {};
+    const std::array<StatusEffect, StatusEffect::Stat::MAX_STAT> statusEffects {};
     std::string name {};
     int durability {};
-    bool toss();
 };
 
 struct Weapon {

@@ -12,4 +12,5 @@ class InventorySystem {
         bool addItem(InventoryItem& item);
         void removeFromInventory(InventoryItem& item);
         void destroyItem(InventoryItem& item);
+        InventoryItem* findByIndex(size_t i);
 };

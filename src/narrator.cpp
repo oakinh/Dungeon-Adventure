@@ -1,11 +1,24 @@
 #include <iostream>
-#include <print>
 #include <variant>
+#include <limits>
 #include "narrator.h"
 #include "entity.h"
 
 void Narrator::welcomePlayer() {
     std::cout << "Welcome to the Dungeon, brave warrior." << '\n';
+}
+
+int Narrator::takeIntSelection() {
+    int selection;
+
+    while (true) {
+        if (std::cin >> selection) return selection;
+
+        std::cout << "Invalid number. Try again.\n";
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 }
 
 void Narrator::readDamage(const Entity& originator, const Entity& target, int damage) {
@@ -46,18 +59,43 @@ void Narrator::readRoom(const Room* room) {
     }
 }
 
-InventoryItem* Narrator::askForPotionSelection(const Entity& player) {
-    auto& inv { player.m_inventorySystem.inventory };
-    for (const auto& invItem : inv) {
-
-        std::visit([](auto&& obj) {
-            using T = std::decay_t<decltype(invItem)>;
-
+size_t Narrator::askForPotionSelection(const Entity& player) {
+    std::cout << "You've chosen to throw a potion. Please select one from the list below by entering it's listed number: \n";
+    const auto& inv { player.m_inventorySystem.inventory };
+    std::unordered_map<size_t, size_t> displayNumToIndex {};
+    size_t displayNum { 1 };
+    for (size_t i { 0 }; i < inv.size(); ++i) {
+        const auto& invItem = inv[i];
+        std::visit([&displayNum, &displayNumToIndex, i](const auto& obj) {
+            using T = std::decay_t<decltype(obj)>;
+            if constexpr (std::is_same_v<T, Potion>) {
+                displayNumToIndex.emplace(displayNum, i);
+                std::cout << displayNum << '.' << obj.name << '\n';
+                ++displayNum;
+            }
         }, invItem);
     }
-    std::cout << "You've chosen to throw a potion. Please select one from the list below: \n";
+
+    auto it = displayNumToIndex.end();
+    do {
+        int selection = { takeIntSelection() };
+        it = displayNumToIndex.find(selection);
+    } while (it == displayNumToIndex.end());
+
+    return it->second;
 }
 
 void Narrator::runPlayerTurn(Entity& player) {
     std::cout << player.getName() << ", it's your turn.";
+}
+
+void Narrator::readStatusEffectApplied(StatusEffect& statusEffect, Entity& entity) {
+    std::cout
+        << "A status effect of "
+        << statusEffect.amount
+        << " on " << statusEffect.stat
+        << " has been applied to "
+        << entity.getName() << " the "
+        << Entity::getTypeName(entity.getType())
+        << '\n';
 }

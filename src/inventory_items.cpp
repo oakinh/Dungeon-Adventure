@@ -18,11 +18,6 @@ bool Tool::use(int target) {
     return true;
 }
 
-// Potion
-bool Potion::toss() {
-    return true;
-}
-
 // Weapon
 bool Weapon::equip() {
     return true;

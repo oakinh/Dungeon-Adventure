@@ -32,11 +32,13 @@ class CombatSystem {
         Weapon* getWeapon();
         int getHealth() const;
         int getAttack() const;
+        int getDefense() const;
+        int getAgility() const;
 
     // Mutators
         int attack(CombatSystem& target);
         void changeWeapon(Weapon* weapon);
         void takeDamage(int damage);
         void reduceWeaponDurability(int durabilityAmount);
-        void applyStatusEffect(const StatusEffect& stausEffect);
+        void applyStatusEffect(const StatusEffect& statusEffect);
 };

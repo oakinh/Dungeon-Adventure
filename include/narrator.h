@@ -7,9 +7,11 @@
 class Narrator {
 
     public:
-        void welcomePlayer();
-        void readDamage(const Entity& originator, const Entity& target, int damage);
-        void readRoom(const Room* room);
-        void runPlayerTurn();
-        InventoryItem& askForPotionSelection(const Entity& player);
+        static void welcomePlayer();
+        static void readDamage(const Entity& originator, const Entity& target, int damage);
+        static void readRoom(const Room* room);
+        static void runPlayerTurn(Entity& player);
+        static size_t askForPotionSelection(const Entity& player);
+        static int takeIntSelection();
+        static void readStatusEffectApplied(StatusEffect& statusEffect, Entity& entity);
 };
