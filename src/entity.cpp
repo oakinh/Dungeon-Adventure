@@ -5,7 +5,7 @@ std::string_view Entity::getName() const {
 }
 
 std::ostream& operator<<(std::ostream& out, Entity::Type type) {
-    out << Entity::getTypeName(type);
+    out << Entity::getTypeStr(type);
     return out;
 }
 

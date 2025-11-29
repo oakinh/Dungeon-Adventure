@@ -18,7 +18,7 @@ void readEnemiesVector(const std::vector<Entity>& enemies) {
     }
     std::cout << "\n======readEnemiesVector: Enemies detected\n";
     for (const auto& enemy : enemies) {
-        std::cout << Entity::getTypeName(enemy.getType()) << '\n';
+        std::cout << Entity::getTypeStr(enemy.getType()) << '\n';
     }
     std::cout << "End readEnemiesVector===============\n\n";
 
@@ -52,7 +52,7 @@ int main() {
     }
 
     while (true) {
-        CombatOrchestration::runTurns(currentRoom->getEntitiesMutable(), player);
+        CombatOrchestration::runTurns(currentRoom);
     }
     
 

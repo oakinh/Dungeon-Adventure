@@ -39,23 +39,33 @@ namespace CombatOrchestration {
         enemy.m_combatSystem.attack(player.m_combatSystem);
     }
 
-    void takePlayerTurn(Entity& player) {\
+    void takePlayerTurn(Room* room) {
         // TODO: Complete playerTurn logic
         // Actions the player can take
             // 1. Main weapon attack
             // 2. Run away
         // Call narrator to narrate start of turn, and it should return the playerTurnDecision for us to action on
+        Entity& player { room->getPlayer() };
+        PlayerDecisionsInfo playerDecisionsInfo { Narrator::runPlayerTurn(player) };
+        if (playerDecisionsInfo.targetRequired) {
+            Entity& target { Narrator::askForTarget(room->getEntitiesMutable() ) };
+            ActionContext ctx { player, &target };
+            playerDecisionsInfo.actionDecisionFcn(ctx);
+        }
     }
 
-    void runTurns(std::vector<Entity>& entities, Entity& player) {
+    void runTurns(Room* room) {
         // TODO: Update StatusEffects on all entities, including player
         int aliveCount = 1; // Player is assumed alive
         bool isFirstPass = true;
         do {
-            for (auto& entity : entities) {
-                if (entity.getType() == 0) {
+            std::vector<Entity>& entities { room->getEntitiesMutable() };
+            Entity& player { room->getPlayer() };
+
+            for (auto& entity : room->getEntitiesMutable()) {
+                if (entity.getType() == Entity::PLAYER) {
                     // Player turn
-                    takePlayerTurn(player);
+                    takePlayerTurn(room);
                     continue;
                 }
                 bool isAlive = entity.getIsAlive();

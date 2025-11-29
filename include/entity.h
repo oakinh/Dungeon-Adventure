@@ -60,7 +60,7 @@ class Entity {
         CombatSystem m_combatSystem;
         InventorySystem m_inventorySystem {};
     // Static
-        static constexpr std::string_view getTypeName(Type type) {
+        static constexpr std::string_view getTypeStr(Type type) {
             return kInfo[static_cast<size_t>(type)].name;
         }
 

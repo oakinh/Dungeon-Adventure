@@ -29,18 +29,26 @@ namespace CombatOrchestration {
         Room* room = nullptr;
     };
 
+    enum class TargetOption {
+        NONE,
+        SELF,
+        REQUIRED,
+        MAX_TARGET_TYPES
+    };
+
     //using ActionDecisionFcn = std::function<bool(Entity&, Entity&)>; // Initiator, Target
     using ActionDecisionFcn = bool(*)(ActionContext&);
     struct PlayerDecisionsInfo {
         std::string_view name;
         ActionDecisionFcn actionDecisionFcn;
+        bool targetRequired;
     };
 
     // *--------------------------------*
     // Player Action Decision Functions
     // *--------------------------------*
     inline bool currentWeaponAttack(ActionContext& ctx) {
-        assert(!ctx.initiator.isEnemy() && "Enemy cannot be the initator of currentWeaponAttack");
+        assert(!ctx.initiator.isEnemy() && "Enemy cannot be the initiator of currentWeaponAttack");
         assert((ctx.target) && "Target must not be null for currentWeaponAttack");
         int damage { ctx.initiator.m_combatSystem.attack(ctx.target->m_combatSystem) };
         return damage > 0;
@@ -53,16 +61,16 @@ namespace CombatOrchestration {
     bool doNothing(ActionContext& ctx);
 
 
-    static constexpr std::array<PlayerDecisionsInfo, static_cast<size_t>(PlayerTurnDecisions::MAX_PLAYER_TURN_DECISIONS)> kInfo {{
-        { "Current Weapon Attack",  currentWeaponAttack},
-        { "Use Potion", usePotion },
-        { "Throw Rock", throwRock },
-        { "Throw Explosive", throwExplosive },
-        { "Run", run },
+    static constexpr std::array<PlayerDecisionsInfo, static_cast<size_t>(PlayerTurnDecisions::MAX_PLAYER_TURN_DECISIONS)> kInfoDecisions {{
+        { "Current Weapon Attack",  currentWeaponAttack, true },
+        { "Use Potion", usePotion, true  },
+        { "Throw Rock", throwRock, true },
+        { "Throw Explosive", throwExplosive, true },
+        { "Run", run, tr },
         { "Do Nothing", doNothing }
     }};
 
     void takeEnemyTurn(Entity& enemy, Entity& player);
     void takePlayerTurn(Entity& player);
-    void runTurns(std::vector<Entity>& entities, Entity& player);
+    void runTurns(Room* room);
 }

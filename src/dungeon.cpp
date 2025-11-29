@@ -55,7 +55,7 @@ void Dungeon::generateEnemies(const int roomDifficulty, std::vector<Entity>& out
             std::cout << "randomEnemyIndex: " << randomEnemyIndex << '\n';
             Entity enemy { Entity::make(static_cast<Entity::Type>(randomEnemyIndex)) };
             out_enemies.push_back(Entity::make(static_cast<Entity::Type>(randomEnemyIndex)));
-            std::cout << "Added enemy: " << Entity::getTypeName(enemy.getType()) << '\n';
+            std::cout << "Added enemy: " << Entity::getTypeStr(enemy.getType()) << '\n';
             currentDifficultySum += enemyRating;
         }
     }
@@ -88,4 +88,10 @@ Room* Dungeon::generateRooms(int roomCount, int minDifficulty, int maxDifficulty
     }
     return nullptr;
     // Fill with loot
+}
+
+Entity& Room::getPlayer() {
+    Entity& entity { m_entities[m_entities.size() - 1] };
+    assert(entity.getType() == Entity::PLAYER && "Expected the player, got something else");
+    return entity;
 }

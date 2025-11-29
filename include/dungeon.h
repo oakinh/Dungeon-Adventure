@@ -38,6 +38,7 @@ class Room {
         std::span<const Entity> getEnemies() const; // Excludes the player
         const std::vector<InventoryItem>& getItems() const { return m_items; }
         int getRoomNum() const { return m_roomNum; }
+        Entity& getPlayer();
 
         void setNextRoom(std::unique_ptr<Room> room) { m_nextRoom = std::move(room); }
         void enterRoom(Entity& entity); // Applies status effect

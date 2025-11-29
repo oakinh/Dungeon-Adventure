@@ -2,7 +2,20 @@
 #include <variant>
 #include <limits>
 #include "narrator.h"
+
+#include "combat_orchestration.h"
 #include "entity.h"
+
+size_t Narrator::getValidSelection(const std::pair<size_t, size_t>& inclusiveBounds) {
+    while (true) {
+        int selection { takeIntSelection() };
+        --selection; // For zero-based array
+        size_t selectionUZ { static_cast<size_t>(selection) };
+        if (selectionUZ >= inclusiveBounds.first && selectionUZ <= inclusiveBounds.second) {
+            return selectionUZ;
+        }
+    }
+}
 
 void Narrator::welcomePlayer() {
     std::cout << "Welcome to the Dungeon, brave warrior." << '\n';
@@ -85,8 +98,21 @@ size_t Narrator::askForPotionSelection(const Entity& player) {
     return it->second;
 }
 
-void Narrator::runPlayerTurn(Entity& player) {
-    std::cout << player.getName() << ", it's your turn.";
+
+
+const CombatOrchestration::PlayerDecisionsInfo& Narrator::runPlayerTurn(Entity& player) {
+    std::cout << player.getName() << ", it's your turn. Select your choice of action from the options below by entering its list number: \n";
+    for (size_t i { 0 }; i < CombatOrchestration::kInfoDecisions.size(); ++i) {
+        std::cout << i + 1 << ". " << CombatOrchestration::kInfoDecisions[i].name;
+    }
+    while (true) {
+        int selection { takeIntSelection() };
+        --selection; // For zero-based array
+        size_t selectionUZ { static_cast<size_t>(selection) };
+        if (selectionUZ > 0 && selectionUZ < CombatOrchestration::kInfoDecisions.size()) {
+            return CombatOrchestration::kInfoDecisions[selectionUZ];
+        }
+    }
 }
 
 void Narrator::readStatusEffectApplied(StatusEffect& statusEffect, Entity& entity) {
@@ -96,6 +122,17 @@ void Narrator::readStatusEffectApplied(StatusEffect& statusEffect, Entity& entit
         << " on " << statusEffect.stat
         << " has been applied to "
         << entity.getName() << " the "
-        << Entity::getTypeName(entity.getType())
+        << Entity::getTypeStr(entity.getType())
         << '\n';
 }
+
+Entity& Narrator::askForTarget(std::vector<Entity>& entities) {
+    std::cout << "You've selected an action that requires a target.\nPlease select one from the options below by entering its list number.\n";
+    size_t displayNum { 1 };
+    for (size_t i { 0 }; i < entities.size(); ++i) {
+        std::cout << displayNum << ". " << Entity::getTypeStr(entities[i].getType());
+        size_t selectionUZ { getValidSelection({ 1, entities.size() - 1}) };
+        return entities[selectionUZ];
+    }
+}
+
